@@ -1,0 +1,466 @@
+{
+  "updatedAt": "2025-12-21T15:46:07.453Z",
+  "createdAt": "2025-12-07T17:25:24.555Z",
+  "id": "l08jJl0o7l0pJqcH",
+  "name": "Citation auto à 6h",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "99bc9839-ff12-4bd8-881f-fbf171b38915",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Quelle est la citation du jour",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "3b345181-3499-4afd-9c07-d4cf5abe8d77",
+      "name": "AI Agent",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "chatId": "6645103251",
+        "text": "=La citation du jour\n\n{{ $json.output.citation }}\n\n{{ $json.output.auteur }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        544,
+        0
+      ],
+      "id": "54e9ade4-de1e-46e3-b993-24756d3fcdce",
+      "name": "Send a text message",
+      "webhookId": "f1769d74-c93e-47ac-8a1a-b9bf91712023",
+      "credentials": {
+        "telegramApi": {
+          "id": "SmbreusoDQWXcbxm",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        112,
+        192
+      ],
+      "id": "0a66b097-9ced-42fb-b1af-fe7894bc9b34",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "PCTGZ0MUS7xRGgVp",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      },
+      "notes": "Donne moi la citation du jour"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"citation\": \"Le succès n'est pas la clé du bonheur.\",\n\t\"auteur\": \"Albert Schweitzer\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        384,
+        192
+      ],
+      "id": "24d82076-2854-4f02-a29f-7a9ecdef99b7",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "twVUQSFZc0ynPtVn",
+          "mode": "list",
+          "cachedResultName": "Citation du jour",
+          "cachedResultUrl": "/projects/zzdtZr91RSwsWyP2/datatables/twVUQSFZc0ynPtVn"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Citation": "={{ $json.output.citation }}",
+            "Auteur": "={{ $json.output.auteur }}",
+            "Date": "={{ $now }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Auteur",
+              "displayName": "Auteur",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Citation",
+              "displayName": "Citation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        544,
+        176
+      ],
+      "id": "d1202297-c5a0-4767-9ba4-22c954defcd5",
+      "name": "Insert row"
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        []
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "6d290e4e-33b8-424d-b0a8-4816f609756f",
+  "activeVersionId": "6d290e4e-33b8-424d-b0a8-4816f609756f",
+  "triggerCount": 1,
+  "shared": [
+    {
+      "updatedAt": "2025-12-07T17:25:24.555Z",
+      "createdAt": "2025-12-07T17:25:24.555Z",
+      "role": "workflow:owner",
+      "workflowId": "l08jJl0o7l0pJqcH",
+      "projectId": "zzdtZr91RSwsWyP2"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2025-12-21T15:46:07.286Z",
+    "createdAt": "2025-12-21T15:46:07.286Z",
+    "versionId": "6d290e4e-33b8-424d-b0a8-4816f609756f",
+    "workflowId": "l08jJl0o7l0pJqcH",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "triggerAtHour": 6
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          0,
+          0
+        ],
+        "id": "99bc9839-ff12-4bd8-881f-fbf171b38915",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "Quelle est la citation du jour",
+          "hasOutputParser": true,
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 3,
+        "position": [
+          208,
+          0
+        ],
+        "id": "3b345181-3499-4afd-9c07-d4cf5abe8d77",
+        "name": "AI Agent",
+        "alwaysOutputData": false
+      },
+      {
+        "parameters": {
+          "chatId": "6645103251",
+          "text": "=La citation du jour\n\n{{ $json.output.citation }}\n\n{{ $json.output.auteur }}",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          544,
+          0
+        ],
+        "id": "54e9ade4-de1e-46e3-b993-24756d3fcdce",
+        "name": "Send a text message",
+        "webhookId": "f1769d74-c93e-47ac-8a1a-b9bf91712023",
+        "credentials": {
+          "telegramApi": {
+            "id": "SmbreusoDQWXcbxm",
+            "name": "Telegram account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          112,
+          192
+        ],
+        "id": "0a66b097-9ced-42fb-b1af-fe7894bc9b34",
+        "name": "Google Gemini Chat Model",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "PCTGZ0MUS7xRGgVp",
+            "name": "Google Gemini(PaLM) Api account"
+          }
+        },
+        "notes": "Donne moi la citation du jour"
+      },
+      {
+        "parameters": {
+          "jsonSchemaExample": "{\n\t\"citation\": \"Le succès n'est pas la clé du bonheur.\",\n\t\"auteur\": \"Albert Schweitzer\"\n}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.3,
+        "position": [
+          384,
+          192
+        ],
+        "id": "24d82076-2854-4f02-a29f-7a9ecdef99b7",
+        "name": "Structured Output Parser"
+      },
+      {
+        "parameters": {
+          "dataTableId": {
+            "__rl": true,
+            "value": "twVUQSFZc0ynPtVn",
+            "mode": "list",
+            "cachedResultName": "Citation du jour",
+            "cachedResultUrl": "/projects/zzdtZr91RSwsWyP2/datatables/twVUQSFZc0ynPtVn"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Citation": "={{ $json.output.citation }}",
+              "Auteur": "={{ $json.output.auteur }}",
+              "Date": "={{ $now }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "Date",
+                "displayName": "Date",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "dateTime",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "Auteur",
+                "displayName": "Auteur",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "Citation",
+                "displayName": "Citation",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          544,
+          176
+        ],
+        "id": "d1202297-c5a0-4767-9ba4-22c954defcd5",
+        "name": "Insert row"
+      }
+    ],
+    "connections": {
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Insert row",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send a text message": {
+        "main": [
+          []
+        ]
+      },
+      "Google Gemini Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "famille claitte",
+    "name": null,
+    "description": null
+  },
+  "tags": []
+}
