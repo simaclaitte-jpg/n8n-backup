@@ -1,0 +1,79 @@
+{
+  "updatedAt": "2025-12-07T17:04:41.367Z",
+  "createdAt": "2025-11-27T17:28:54.416Z",
+  "id": "LbS7AO614Qjg6PDh",
+  "name": "Essai Gmail",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a4cf6928-643b-4315-b445-46aceb69209c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "sendTo": "sima.claitte@gmail.com",
+        "subject": "Hello World",
+        "message": "coucou de n8n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "96886e4b-fd68-434f-8bb5-2571990cd954",
+      "name": "Send a message",
+      "webhookId": "8600d86e-34ce-4211-ad02-3c3c774cea9b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "n8fWbHqEoWVpZT0v",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "6ddd18ea-027c-4b61-84aa-080b433ea304",
+  "activeVersionId": null,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2025-11-27T17:28:54.416Z",
+      "createdAt": "2025-11-27T17:28:54.416Z",
+      "role": "workflow:owner",
+      "workflowId": "LbS7AO614Qjg6PDh",
+      "projectId": "zzdtZr91RSwsWyP2"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
