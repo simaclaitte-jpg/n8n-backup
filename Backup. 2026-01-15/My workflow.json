@@ -1,0 +1,94 @@
+{
+  "updatedAt": "2025-12-07T17:04:47.929Z",
+  "createdAt": "2025-12-07T14:06:10.739Z",
+  "id": "3OTCauUDBGJ3hBNT",
+  "name": "My workflow",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f995d5bc-e224-44af-82be-0969c60c9f2f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        432,
+        32
+      ],
+      "id": "6008835f-b547-46f8-a1a3-83ddea7daf06",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "bryuoD4SjMuyrb17",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        -80
+      ],
+      "id": "fdbcb8d6-5a15-423d-abaa-a9133d5611ea",
+      "name": "Create spreadsheet"
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        []
+      ]
+    },
+    "Download file": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "3577821a-6c5d-4b5d-a3eb-db1779cac661",
+  "activeVersionId": null,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2025-12-07T14:06:10.739Z",
+      "createdAt": "2025-12-07T14:06:10.739Z",
+      "role": "workflow:owner",
+      "workflowId": "3OTCauUDBGJ3hBNT",
+      "projectId": "zzdtZr91RSwsWyP2"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
