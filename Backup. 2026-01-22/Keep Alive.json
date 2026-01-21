@@ -1,0 +1,144 @@
+{
+  "updatedAt": "2025-11-27T16:59:35.557Z",
+  "createdAt": "2025-11-27T16:55:12.587Z",
+  "id": "2SambeBdz7BIAwYO",
+  "name": "Keep Alive",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b280373c-a5cb-426e-aebe-ef3c16c1b094",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://n8n-kibp.onrender.com/healthz",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "ca5dc6c3-669c-4293-a02e-bbf6bd2dad4d",
+      "name": "HTTP Request"
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "none",
+    "saveDataSuccessExecution": "none",
+    "saveManualExecutions": false,
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "meta": null,
+  "pinData": {},
+  "versionId": "138d617a-fadc-4ef2-8a7b-cbf2d29b6e13",
+  "activeVersionId": "138d617a-fadc-4ef2-8a7b-cbf2d29b6e13",
+  "triggerCount": 1,
+  "shared": [
+    {
+      "updatedAt": "2025-11-27T16:55:12.587Z",
+      "createdAt": "2025-11-27T16:55:12.587Z",
+      "role": "workflow:owner",
+      "workflowId": "2SambeBdz7BIAwYO",
+      "projectId": "zzdtZr91RSwsWyP2"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2025-11-27T16:59:26.089Z",
+    "createdAt": "2025-11-27T16:59:26.089Z",
+    "versionId": "138d617a-fadc-4ef2-8a7b-cbf2d29b6e13",
+    "workflowId": "2SambeBdz7BIAwYO",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "minutes",
+                "minutesInterval": 10
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          0,
+          0
+        ],
+        "id": "b280373c-a5cb-426e-aebe-ef3c16c1b094",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "url": "https://n8n-kibp.onrender.com/healthz",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          208,
+          0
+        ],
+        "id": "ca5dc6c3-669c-4293-a02e-bbf6bd2dad4d",
+        "name": "HTTP Request"
+      }
+    ],
+    "connections": {
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "famille claitte",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "tags": []
+}
