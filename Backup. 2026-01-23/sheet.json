@@ -1,0 +1,141 @@
+{
+  "updatedAt": "2025-12-21T15:20:38.024Z",
+  "createdAt": "2025-12-10T18:23:11.331Z",
+  "id": "eSgWFBkQPeCfqxli",
+  "name": "sheet",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -768,
+        -16
+      ],
+      "id": "5e527eaf-9ce7-40e3-8fc6-46242cc3b59a",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1IXSmA_e8CT5DlUjJ8KoaE7XOhvGumbJZJaS7JeH4taw",
+          "mode": "list",
+          "cachedResultName": "Citation du jour",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IXSmA_e8CT5DlUjJ8KoaE7XOhvGumbJZJaS7JeH4taw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 224953847,
+          "mode": "list",
+          "cachedResultName": "Citation du jour",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IXSmA_e8CT5DlUjJ8KoaE7XOhvGumbJZJaS7JeH4taw/edit#gid=224953847"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -256,
+        -16
+      ],
+      "id": "f8232885-eee1-4e61-bb9a-7f9c26e80bc0",
+      "name": "Get row(s) in sheet",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "w4MjnuW7NQ5ICb0P",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6f72dd5e-275d-4e1a-881e-5fcc43cc9957",
+              "name": "Date",
+              "value": "15/01/2022",
+              "type": "string"
+            },
+            {
+              "id": "83e44d76-feb1-45c0-b2e1-262f71b41ef2",
+              "name": "Auteur",
+              "value": "lpgd",
+              "type": "string"
+            },
+            {
+              "id": "09b0b235-0028-4c61-81ed-a41626419923",
+              "name": "Citation",
+              "value": "fbxxvn",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -560,
+        -16
+      ],
+      "id": "f68d2231-106f-4eed-9386-a1eb3f80d3e5",
+      "name": "Edit Fields"
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "6b95efbc-4c1d-40a0-be88-2fecf8fca368",
+  "activeVersionId": null,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2025-12-10T18:23:11.331Z",
+      "createdAt": "2025-12-10T18:23:11.331Z",
+      "role": "workflow:owner",
+      "workflowId": "eSgWFBkQPeCfqxli",
+      "projectId": "zzdtZr91RSwsWyP2"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
