@@ -1,0 +1,68 @@
+{
+  "updatedAt": "2025-12-07T17:56:31.662Z",
+  "createdAt": "2025-11-28T22:03:24.290Z",
+  "id": "ED0UKexeXvX6c3gH",
+  "name": "Google Sheets",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "90adeb63-3294-426c-9514-527240044531",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "905aedf7-1c3a-489e-b4be-071b6783f219",
+      "name": "Create spreadsheet"
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Create spreadsheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "a454f2db-040a-4fb3-8df3-a45038823b74",
+  "activeVersionId": null,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2025-11-28T22:03:24.290Z",
+      "createdAt": "2025-11-28T22:03:24.290Z",
+      "role": "workflow:owner",
+      "workflowId": "ED0UKexeXvX6c3gH",
+      "projectId": "zzdtZr91RSwsWyP2"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
