@@ -1,0 +1,152 @@
+{
+  "updatedAt": "2025-12-21T15:20:26.155Z",
+  "createdAt": "2025-12-09T16:38:07.680Z",
+  "id": "DCjuwWdW54yvuJlw",
+  "name": "Free Ai Agent",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "da2f7cdf-64f5-4e7e-b499-189ecff87a35",
+      "name": "When chat message received",
+      "webhookId": "08b094ef-3572-4503-8209-0f00f0f93eba"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Vous êtes un assistant précieux, chargé de fournir des informations sur un sujet donné. Sert toi du tool wikipedia pour répondre"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "518862ea-f1d8-49ea-8534-707e44031fd3",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "e9c81cd2-0965-47c5-aded-bd45bff47f4a",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "PCTGZ0MUS7xRGgVp",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
+      "typeVersion": 1,
+      "position": [
+        416,
+        192
+      ],
+      "id": "a5c1863c-535c-4a8f-b42b-c27c68a36656",
+      "name": "Wikipedia",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 15
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        224,
+        208
+      ],
+      "id": "1162731d-abeb-45ad-862d-6f5a8bd93d09",
+      "name": "Simple Memory"
+    }
+  ],
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wikipedia": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "a281c52d-ff8f-4764-8c11-5e1855b0cc96",
+  "activeVersionId": null,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2025-12-09T16:38:07.680Z",
+      "createdAt": "2025-12-09T16:38:07.680Z",
+      "role": "workflow:owner",
+      "workflowId": "DCjuwWdW54yvuJlw",
+      "projectId": "zzdtZr91RSwsWyP2"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
