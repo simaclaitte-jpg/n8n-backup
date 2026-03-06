@@ -1,0 +1,89 @@
+{
+  "updatedAt": "2025-12-23T18:27:35.000Z",
+  "createdAt": "2025-12-23T16:57:57.872Z",
+  "id": "j270h2xVMkEtBvD9",
+  "name": "sheets",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "24b9d662-1bcf-4635-bdce-1e4dabbb8994",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1S9qi4HuBuVC9i0tZG5sFfoUOcHElYcjNJyUDxmtfyCg",
+          "mode": "list",
+          "cachedResultName": "essai du 23-12-25",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S9qi4HuBuVC9i0tZG5sFfoUOcHElYcjNJyUDxmtfyCg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1678282071,
+          "mode": "list",
+          "cachedResultName": "Citation du jour",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S9qi4HuBuVC9i0tZG5sFfoUOcHElYcjNJyUDxmtfyCg/edit#gid=1678282071"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "d81fcf2f-6712-45e0-8be2-53b2e9daab1a",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "w4MjnuW7NQ5ICb0P",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "0dca3fab-5ec2-49dd-9088-d976676b8142",
+  "activeVersionId": null,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2025-12-23T16:57:57.872Z",
+      "createdAt": "2025-12-23T16:57:57.872Z",
+      "role": "workflow:owner",
+      "workflowId": "j270h2xVMkEtBvD9",
+      "projectId": "zzdtZr91RSwsWyP2"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
